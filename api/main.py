@@ -13,7 +13,7 @@ app = FastAPI()
 # ✅ Add CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow frontend domain
+    allow_origins=["*"],  # Allow frontend domain
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
@@ -40,6 +40,7 @@ app.include_router(admin_profile.router, prefix="/admin_profile", tags=["admin_p
 app.include_router(classes.router, prefix="/classes", tags=["classes"])
 
 app.include_router(contact.router, prefix="/contact", tags=["contact"])
+
 
 
 
