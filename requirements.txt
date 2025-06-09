@@ -33,3 +33,6 @@ email-validator
 
 pydantic-settings
 python-multipart
+
+# Date handling for subscription durations
+python-dateutil
