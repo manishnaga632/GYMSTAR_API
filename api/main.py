@@ -42,6 +42,10 @@ app.include_router(classes.router, prefix="/classes", tags=["classes"])
 app.include_router(contact.router, prefix="/contact", tags=["contact"])
 
 
+# ✅ Add Health Check Route (root "/")
+@app.get("/")
+def health_check():
+    return {"status": "ok"}
 
 
 
@@ -49,5 +53,13 @@ app.include_router(contact.router, prefix="/contact", tags=["contact"])
 
 
 
+
+
+
+
+
+# git add .
+# git commit -m "Add python-dateutil for subscription date handling"
+# git push origin main
 
 

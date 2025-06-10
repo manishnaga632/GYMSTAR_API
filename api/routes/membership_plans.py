@@ -10,9 +10,22 @@ router = APIRouter()
 def create_plan(plan: schemas.MembershipPlanCreate, db: Session = Depends(get_db)):
     return crud.create_plan(db, plan)
 
+# @router.get("/all", response_model=list[schemas.MembershipPlanResponse])
+# def get_all(db: Session = Depends(get_db)):
+#     return crud.get_all_plans(db)
+
+
 @router.get("/all", response_model=list[schemas.MembershipPlanResponse])
 def get_all(db: Session = Depends(get_db)):
-    return crud.get_all_plans(db)
+    try:
+        print("🔍 Fetching all membership plans")
+        plans = crud.get_all_plans(db)
+        print("✅ Plans fetched:", plans)
+        return plans
+    except Exception as e:
+        print("❌ ERROR in /all:", str(e))
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+
 
 @router.get("/{plan_id}", response_model=schemas.MembershipPlanResponse)
 def get_by_id(plan_id: int, db: Session = Depends(get_db)):
