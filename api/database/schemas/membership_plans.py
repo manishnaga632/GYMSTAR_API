@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ConfigDict
 from typing import Optional
 from enum import Enum
 from datetime import datetime
@@ -89,5 +89,4 @@ class MembershipPlanResponse(MembershipPlanBase):
     final_price: Optional[float]
     duration: Optional[DurationEnum] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
