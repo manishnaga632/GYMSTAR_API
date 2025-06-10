@@ -3,9 +3,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.routes import auth, subscription, users, membership_plans, slider, trainers , static_manager, admin_profile, classes, contact
 from api.database.connection import engine
 from api.database.base import Base
+import os  # ✅ Added for env check
 
-# Create database tables if they don't exist
-Base.metadata.create_all(bind=engine)
+
+# ✅ Create tables only in development
+if os.getenv("ENV", "dev") == "dev":
+    Base.metadata.create_all(bind=engine)
 
 # Initialize FastAPI app
 app = FastAPI()
